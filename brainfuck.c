@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-const int limit = 1e7;
-char mem[limit+7], c;
+#define limit 10000000
+
+char memo[limit], c;
 int m=0, loopOpen=0, loopClose=0;
 
 int main(int argc, char const *argv[]) {
@@ -35,14 +36,14 @@ int main(int argc, char const *argv[]) {
     } else if(c == '<' && !(m--)) {
       m=limit-1;
     } else if(c == '+') {
-      mem[m]++;
+      memo[m]++;
     } else if(c == '-') {
-      mem[m]--;
+      memo[m]--;
     } else if(c == '.') {
-      std::cout << mem[m];
+      printf("%c", memo[m]);
     } else if(c == ',') {
-      mem[m] = fgetc(stdin);
-    } else if(c == '[' && !mem[m]) {
+      memo[m] = fgetc(stdin);
+    } else if(c == '[' && !memo[m]) {
       loopOpen++;
       while(loopOpen) {
         if(++i == limit) {
@@ -56,7 +57,7 @@ int main(int argc, char const *argv[]) {
           loopOpen--;
         }
       }
-    } else if(c == '[' && !mem[m]) {
+    } else if(c == '[' && !memo[m]) {
       loopClose++;
       while(loopClose) {
         if(--i == -1) {
