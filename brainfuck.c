@@ -1,5 +1,5 @@
-#include <iostream>
-#include <cstdio>
+#include <stdio.h>
+#include <stdlib.h>
 
 const int limit = 1e7;
 char mem[limit+7], c;
@@ -41,9 +41,7 @@ int main(int argc, char const *argv[]) {
     } else if(c == '.') {
       std::cout << mem[m];
     } else if(c == ',') {
-      char in;
-      std::cin >> in;
-      mem[m] = in;
+      mem[m] = fgetc(stdin);
     } else if(c == '[' && !mem[m]) {
       loopOpen++;
       while(loopOpen) {
